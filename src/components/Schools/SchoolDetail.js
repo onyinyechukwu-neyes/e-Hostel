@@ -5,8 +5,8 @@ import { schools, students } from "../../API/Details";
 const SchoolDetail = props => {
   const [state, setState] = useState({
     school: {},
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     email: "",
     number: "",
   });
@@ -38,7 +38,7 @@ const SchoolDetail = props => {
   };
 
   
-  const { firstname, lastname, email, number, school } = state;
+  const { firstName, lastName, email, number, school } = state;
 
   return (
     <div className="head-background">
@@ -65,14 +65,14 @@ const SchoolDetail = props => {
           <Form onSubmit={handleSubmit}>
             <FormGroup>
               <Label column sm="2" className="column">
-                Firstname:
+                FirstName:
               </Label>
               <Col sm="10" className="column">
                 <Input
-                  placeholder="Firstname"
+                  placeholder="firstName"
                   type="text"
-                  name="firstname"
-                  defaultValue={firstname}
+                  name="firstName"
+                  defaultValue={firstName}
                   onChange={handleChange}
                 />
               </Col>
@@ -80,14 +80,14 @@ const SchoolDetail = props => {
 
             <FormGroup>
               <Label column sm="2" className="column">
-                Lastname:
+                LastName:
               </Label>
               <Col sm="10" className="column">
                 <Input
-                  placeholder="Lastname"
+                  placeholder="lastName"
                   type="text"
-                  name="lastname"
-                  defaultValue={lastname}
+                  name="lastName"
+                  defaultValue={lastName}
                   onChange={handleChange}
                 />
               </Col>

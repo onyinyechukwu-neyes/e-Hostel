@@ -8,13 +8,13 @@ const VerifyPayment = props => {
     student: {}
   });
   useEffect(() => {
-    console.log(props.location.state);
+    
     const { location } = props;
     const { state } = location;
     let studentInfo = students.find(
-      s => s.firstname === state.firstname && s.regNo === state.number
+      s => s.firstName === state.firstName
     );
-    console.log(studentInfo)
+   
     if (studentInfo !== undefined) {
       setState({
         ...state,
@@ -22,7 +22,6 @@ const VerifyPayment = props => {
       });
     } else {
       alert("Not a member of the school ");
-      props.history.push("/");
     }
   }, []);
 
@@ -36,7 +35,8 @@ const VerifyPayment = props => {
   const handleSubmit = e => {
     e.preventDefault();
   };
-  const { number, student } = state;
+  const { number } = state;
+  console.log("STATE", state.student)
   return (
     <div className="head-background">
       <div className="container">
@@ -48,7 +48,7 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-                Dear {student.firstname}
+                Dear {state.student !== undefined ? state.student.firstName : ""}
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"

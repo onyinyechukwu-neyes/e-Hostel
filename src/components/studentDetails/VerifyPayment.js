@@ -5,20 +5,23 @@ import { students } from "../../API/Details";
 const VerifyPayment = props => {
   const [state, setState] = useState({
     recieptNumber: "",
+    EmailAddress: "",
+    RegNo: "",
     student: {}
   });
-  const stateRef = useRef(props.location.state.state).current;
+  const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
 
   useEffect(
     () => {
       debugger;
       let studentInfo = students.find(s => s.firstName === stateRef.firstName);
-      console.log(studentInfo);
 
       if (studentInfo !== undefined) {
         setState({
           ...state,
-          student: studentInfo
+          student: studentInfo,
+          RegNo: studentInfo.regNo,
+          EmailAddress: studentInfo.email
         });
       } else {
         alert("Not a member of the school ");
@@ -38,7 +41,7 @@ const VerifyPayment = props => {
   const handleSubmit = e => {
     e.preventDefault();
   };
-  const { recieptNumber, student } = state;
+  const { recieptNumber, student, EmailAddress, RegNo } = state;
   console.log("STATE", student);
   return (
     <div className="head-background">
@@ -65,6 +68,16 @@ const VerifyPayment = props => {
           <Form onSubmit={handleSubmit}>
             <h2>Payment Verification</h2>
             <FormGroup controlId="formBasicTitle">
+              <Input
+                type="hidden"
+                defaultValue={EmailAddress}
+                onChange={handleChange}
+              />
+              <Input
+                type="hidden"
+                defaultValue={RegNo}
+                onChange={handleChange}
+              />
               <Label>Reciept No.:</Label>
               <Input
                 type="text"

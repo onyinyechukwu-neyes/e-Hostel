@@ -11,10 +11,13 @@ const VerifyPayment = props => {
   });
 
   const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
+  console.log(stateRef);
 
   useEffect(
     () => {
-      let studentInfo = students.find(s => s.firstName === stateRef.firstName);
+      let studentInfo = students.find(
+        s => s.email === stateRef.email && s.regNo === stateRef.number
+      );
 
       if (studentInfo !== undefined) {
         setState({
@@ -25,6 +28,7 @@ const VerifyPayment = props => {
         });
       } else {
         alert("Not a member of the school ");
+        props.history.push(`/school-detail/${stateRef.school.id}`);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,7 +73,7 @@ const VerifyPayment = props => {
           </div>
           <Form onSubmit={handleSubmit}>
             <h2>Payment Verification</h2>
-            <FormGroup controlId="formBasicTitle">
+            <FormGroup>
               <Input
                 type="hidden"
                 defaultValue={EmailAddress}
@@ -83,7 +87,7 @@ const VerifyPayment = props => {
               <Label>Reciept No.:</Label>
               <Input
                 type="text"
-                placeholder="00000"
+                placeholder="EH-89788780009876"
                 name="recieptNumber"
                 defaultValue={recieptNumber}
                 onChange={handleChange}
@@ -91,7 +95,7 @@ const VerifyPayment = props => {
             </FormGroup>
 
             <Button variant="primary" type="submit">
-              Submit
+              Verify
             </Button>
           </Form>
         </div>

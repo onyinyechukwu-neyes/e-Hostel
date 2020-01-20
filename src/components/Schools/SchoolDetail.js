@@ -68,7 +68,7 @@ const SchoolDetail = props => {
           </div>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
-              <Label column sm="2" className="column">
+              <Label sm="2" className="column">
                 FirstName:
               </Label>
               <Col sm="10" className="column">
@@ -83,7 +83,7 @@ const SchoolDetail = props => {
             </FormGroup>
 
             <FormGroup>
-              <Label column sm="2" className="column">
+              <Label sm="2" className="column">
                 LastName:
               </Label>
               <Col sm="10" className="column">
@@ -98,7 +98,7 @@ const SchoolDetail = props => {
             </FormGroup>
 
             <FormGroup>
-              <Label column sm="2" className="column">
+              <Label sm="2" className="column">
                 Email:
               </Label>
               <Col sm="10" className="column">
@@ -113,7 +113,7 @@ const SchoolDetail = props => {
             </FormGroup>
 
             <FormGroup>
-              <Label column sm="2" className="column">
+              <Label sm="2" className="column">
                 Reg/Id number:
               </Label>
               <Col sm="10" className="column">
@@ -128,7 +128,7 @@ const SchoolDetail = props => {
             </FormGroup>
 
             <FormGroup>
-              <Label column sm="10" className="column"></Label>
+              <Label sm="10" className="column"></Label>
               <Col sm="2" className="column">
                 <Button
                   variant="outline-success"

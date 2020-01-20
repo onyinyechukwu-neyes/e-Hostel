@@ -10,20 +10,6 @@ const VerifyPayment = props => {
     student: {}
   });
 
-
-  useEffect(() => {
-    const studentId = parseInt(props.match.params.id);
-
-    let studentInfo = students.find(sch => sch.id === studentId);
-    if (studentInfo !== undefined) {
-      setState({
-        ...state,
-        student: studentInfo
-      });
-    } else {
-      props.history.push("/");
-    }
-  }, []);
   const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
 
   useEffect(

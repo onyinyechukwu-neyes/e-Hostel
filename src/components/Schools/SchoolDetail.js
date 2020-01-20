@@ -8,7 +8,7 @@ const SchoolDetail = props => {
     firstName: "",
     lastName: "",
     email: "",
-    number: ""
+    number: "",
   });
 
   useEffect(
@@ -31,15 +31,27 @@ const SchoolDetail = props => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    const studentId = parseInt(props.match.params.id);
+    let studentInfo = students.find(stu => stu.id === studentId && stu.firstName);
     setState({
       ...state,
-      [name]: value
+      [name]: value,
+      studentId : studentInfo.id
+
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
   };
+  // const studentSelected = () => {
+  //   const studentId = parseInt(props.match.params.id);
+  //   let studentInfo = students.find(stu => stu.id === studentId);
+  //   setState({
+  //     ...state,
+  //     studentId : studentInfo.id
+  //   })
+  // }
 
   const { firstName, lastName, email, number, school } = state;
 

@@ -9,6 +9,7 @@ const VerifyPayment = props => {
     RegNo: "",
     student: {}
   });
+
   const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
 
   useEffect(
@@ -55,7 +56,9 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
+
                 Dear {student !== undefined ? student.firstName : ""}
+
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"

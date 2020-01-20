@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Input, Label, FormGroup } from "reactstrap";
 import { students } from "../../API/Details";
 
 const VerifyPayment = props => {
   const [state, setState] = useState({
-    number: "",
+    recieptNumber: "",
+    EmailAddress: "",
+    RegNo: "",
     student: {}
   });
+<<<<<<< HEAD
   // useEffect(() => {
     
   //   const { location } = props;
@@ -39,6 +42,28 @@ const VerifyPayment = props => {
       props.history.push("/");
     }
   }, []);
+=======
+  const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
+
+  useEffect(
+    () => {
+      let studentInfo = students.find(s => s.firstName === stateRef.firstName);
+
+      if (studentInfo !== undefined) {
+        setState({
+          ...state,
+          student: studentInfo,
+          RegNo: studentInfo.regNo,
+          EmailAddress: studentInfo.email
+        });
+      } else {
+        alert("Not a member of the school ");
+      }
+    },
+    //eslint-disable-line react-hooks/exhaustive-deps
+    []
+  );
+>>>>>>> fc564e5b347d05f41786f8d535df03ab1f1e4309
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -49,9 +74,11 @@ const VerifyPayment = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    const { student, ...rest } = state;
+    console.log(rest);
   };
-  const { number } = state;
-  console.log("STATE", state.student)
+  const { recieptNumber, student, EmailAddress, RegNo } = state;
+  console.log("STATE", student);
   return (
     <div className="head-background">
       <div className="container">
@@ -63,7 +90,11 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
+<<<<<<< HEAD
                 Dear {state.student.firstName }
+=======
+                Dear {student !== undefined ? student.firstName : ""}
+>>>>>>> fc564e5b347d05f41786f8d535df03ab1f1e4309
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"
@@ -77,12 +108,22 @@ const VerifyPayment = props => {
           <Form onSubmit={handleSubmit}>
             <h2>Payment Verification</h2>
             <FormGroup controlId="formBasicTitle">
+              <Input
+                type="hidden"
+                defaultValue={EmailAddress}
+                onChange={handleChange}
+              />
+              <Input
+                type="hidden"
+                defaultValue={RegNo}
+                onChange={handleChange}
+              />
               <Label>Reciept No.:</Label>
               <Input
-                type="number"
+                type="text"
                 placeholder="00000"
-                name="number"
-                defaultValue={number}
+                name="recieptNumber"
+                defaultValue={recieptNumber}
                 onChange={handleChange}
               />
             </FormGroup>

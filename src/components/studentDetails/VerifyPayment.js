@@ -39,6 +39,8 @@ const VerifyPayment = props => {
   };
   const handleSubmit = e => {
     e.preventDefault();
+    const { student, ...rest } = state;
+    console.log(rest);
   };
   const { recieptNumber, student, EmailAddress, RegNo } = state;
   console.log("STATE", student);

@@ -9,6 +9,7 @@ const SchoolDetail = props => {
     lastName: "",
     email: "",
     number: "",
+    student: 0
   });
 
   useEffect(() => {
@@ -27,15 +28,27 @@ const SchoolDetail = props => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    const studentId = parseInt(props.match.params.id);
+    let studentInfo = students.find(stu => stu.id === studentId && stu.firstName);
     setState({
       ...state,
-      [name]: value
+      [name]: value,
+      studentId : studentInfo.id
+
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
   };
+  // const studentSelected = () => {
+  //   const studentId = parseInt(props.match.params.id);
+  //   let studentInfo = students.find(stu => stu.id === studentId);
+  //   setState({
+  //     ...state,
+  //     studentId : studentInfo.id
+  //   })
+  // }
 
   
   const { firstName, lastName, email, number, school } = state;
@@ -130,10 +143,7 @@ const SchoolDetail = props => {
                   variant="outline-success"
                   type="submit"
                   onClick={() => {
-                    props.history.push({
-                      pathname: "/verify",
-                      state: {state}
-                    });
+                    props.history.push(`/verify/${state.studentId}`);
                   }}
                 >
                   PROCEED

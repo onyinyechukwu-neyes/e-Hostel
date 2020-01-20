@@ -7,29 +7,44 @@ const VerifyPayment = props => {
     number: "",
     student: {}
   });
-  useEffect(() => {
+  // useEffect(() => {
     
-    const { location } = props;
-    const { state } = location;
-    let studentInfo = students.find(
-      s => s.firstName === state.firstName
-    );
+  //   const { location } = props;
+  //   const { state } = location;
+  //   let id = props.match.params.id
+  //   let studentInfo = students.find(
+  //     s => s.id === parseInt(id)
+  //   );
    
+  //   if (studentInfo !== undefined) {
+  //     setState({
+  //       ...state,
+  //       student: studentInfo.firstName
+  //     });
+  //   } else {
+  //     alert("Not a member of the school ");
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const studentId = parseInt(props.match.params.id);
+
+    let studentInfo = students.find(sch => sch.id === studentId);
     if (studentInfo !== undefined) {
       setState({
         ...state,
         student: studentInfo
       });
     } else {
-      alert("Not a member of the school ");
+      props.history.push("/");
     }
   }, []);
 
   const handleChange = e => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setState({
       ...state,
-      [name]: defaultValue
+      [name]: value
     });
   };
   const handleSubmit = e => {
@@ -48,7 +63,7 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-                Dear {state.student !== undefined ? state.student.firstName : ""}
+                Dear {state.student.firstName }
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"

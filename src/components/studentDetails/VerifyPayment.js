@@ -13,7 +13,6 @@ const VerifyPayment = props => {
 
   useEffect(
     () => {
-      debugger;
       let studentInfo = students.find(s => s.firstName === stateRef.firstName);
 
       if (studentInfo !== undefined) {

@@ -1,42 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Button, Input, Label, FormGroup } from "reactstrap";
 import { students } from "../../API/Details";
 
 const VerifyPayment = props => {
   const [state, setState] = useState({
-    number: "",
+    recieptNumber: "",
     student: {}
   });
-  useEffect(() => {
-    
-    const { location } = props;
-    const { state } = location;
-    let studentInfo = students.find(
-      s => s.firstName === state.firstName
-    );
-   
-    if (studentInfo !== undefined) {
-      setState({
-        ...state,
-        student: studentInfo
-      });
-    } else {
-      alert("Not a member of the school ");
-    }
-  }, []);
+  const stateRef = useRef(props.location.state.state).current;
+
+  useEffect(
+    () => {
+      debugger;
+      let studentInfo = students.find(s => s.firstName === stateRef.firstName);
+      console.log(studentInfo);
+
+      if (studentInfo !== undefined) {
+        setState({
+          ...state,
+          student: studentInfo
+        });
+      } else {
+        alert("Not a member of the school ");
+      }
+    },
+    //eslint-disable-line react-hooks/exhaustive-deps
+    []
+  );
 
   const handleChange = e => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setState({
       ...state,
-      [name]: defaultValue
+      [name]: value
     });
   };
   const handleSubmit = e => {
     e.preventDefault();
   };
-  const { number } = state;
-  console.log("STATE", state.student)
+  const { recieptNumber, student } = state;
+  console.log("STATE", student);
   return (
     <div className="head-background">
       <div className="container">
@@ -48,7 +51,7 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-                Dear {state.student !== undefined ? state.student.firstName : ""}
+                Dear {student !== undefined ? student.firstName : ""}
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"
@@ -64,10 +67,10 @@ const VerifyPayment = props => {
             <FormGroup controlId="formBasicTitle">
               <Label>Reciept No.:</Label>
               <Input
-                type="number"
+                type="text"
                 placeholder="00000"
-                name="number"
-                defaultValue={number}
+                name="recieptNumber"
+                defaultValue={recieptNumber}
                 onChange={handleChange}
               />
             </FormGroup>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
-import { schools, students } from "../../API/Details";
+import { schools } from "../../API/Details";
 
 const SchoolDetail = props => {
   const [state, setState] = useState({
@@ -8,22 +8,26 @@ const SchoolDetail = props => {
     firstName: "",
     lastName: "",
     email: "",
-    number: "",
+    number: ""
   });
 
-  useEffect(() => {
-    const schoolId = parseInt(props.match.params.id);
+  useEffect(
+    () => {
+      const schoolId = parseInt(props.match.params.id);
 
-    let schoolInfo = schools.find(sch => sch.id === schoolId);
-    if (schoolInfo !== undefined) {
-      setState({
-        ...state,
-        school: schoolInfo
-      });
-    } else {
-      props.history.push("/");
-    }
-  }, []);
+      let schoolInfo = schools.find(sch => sch.id === schoolId);
+      if (schoolInfo !== undefined) {
+        setState({
+          ...state,
+          school: schoolInfo
+        });
+      } else {
+        props.history.push("/");
+      }
+    },
+    //eslint-disable-line react-hooks/exhaustive-deps
+    []
+  );
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -37,7 +41,6 @@ const SchoolDetail = props => {
     e.preventDefault();
   };
 
-  
   const { firstName, lastName, email, number, school } = state;
 
   return (
@@ -69,7 +72,7 @@ const SchoolDetail = props => {
               </Label>
               <Col sm="10" className="column">
                 <Input
-                  placeholder="firstName"
+                  placeholder="Firstname"
                   type="text"
                   name="firstName"
                   defaultValue={firstName}
@@ -84,7 +87,7 @@ const SchoolDetail = props => {
               </Label>
               <Col sm="10" className="column">
                 <Input
-                  placeholder="lastName"
+                  placeholder="LastName"
                   type="text"
                   name="lastName"
                   defaultValue={lastName}
@@ -132,7 +135,7 @@ const SchoolDetail = props => {
                   onClick={() => {
                     props.history.push({
                       pathname: "/verify",
-                      state: {state}
+                      state: { state }
                     });
                   }}
                 >

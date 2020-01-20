@@ -9,40 +9,6 @@ const VerifyPayment = props => {
     RegNo: "",
     student: {}
   });
-<<<<<<< HEAD
-  // useEffect(() => {
-    
-  //   const { location } = props;
-  //   const { state } = location;
-  //   let id = props.match.params.id
-  //   let studentInfo = students.find(
-  //     s => s.id === parseInt(id)
-  //   );
-   
-  //   if (studentInfo !== undefined) {
-  //     setState({
-  //       ...state,
-  //       student: studentInfo.firstName
-  //     });
-  //   } else {
-  //     alert("Not a member of the school ");
-  //   }
-  // }, []);
-
-  useEffect(() => {
-    const studentId = parseInt(props.match.params.id);
-
-    let studentInfo = students.find(sch => sch.id === studentId);
-    if (studentInfo !== undefined) {
-      setState({
-        ...state,
-        student: studentInfo
-      });
-    } else {
-      props.history.push("/");
-    }
-  }, []);
-=======
   const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
 
   useEffect(
@@ -63,7 +29,6 @@ const VerifyPayment = props => {
     //eslint-disable-line react-hooks/exhaustive-deps
     []
   );
->>>>>>> fc564e5b347d05f41786f8d535df03ab1f1e4309
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -90,11 +55,7 @@ const VerifyPayment = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-<<<<<<< HEAD
-                Dear {state.student.firstName }
-=======
                 Dear {student !== undefined ? student.firstName : ""}
->>>>>>> fc564e5b347d05f41786f8d535df03ab1f1e4309
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"

@@ -25,9 +25,10 @@ const VerifyPayment = props => {
         });
       } else {
         alert("Not a member of the school ");
+        props.history.push(`/school-details/${stateRef.school.id}`)
       }
     },
-    //eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

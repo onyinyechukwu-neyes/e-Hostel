@@ -20,7 +20,7 @@ const App = () =>{
           render={props => <SchoolDetail {...props}/>}
         />
         <Route 
-          path= "/verify/:id"
+          path= "/verify"
           render={props => <VerifyPayment {...props}/>}  
         />
         <Route 

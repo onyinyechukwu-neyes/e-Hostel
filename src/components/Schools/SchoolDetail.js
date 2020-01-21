@@ -8,7 +8,7 @@ const SchoolDetail = props => {
     firstName: "",
     lastName: "",
     email: "",
-    number: "",
+    number: ""
   });
 
   useEffect(
@@ -25,30 +25,22 @@ const SchoolDetail = props => {
         props.history.push("/");
       }
     },
-    //eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
   const handleChange = e => {
     const { name, value } = e.target;
+
     setState({
       ...state,
-      [name]: value,
-
+      [name]: value
     });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
   };
-  // const studentSelected = () => {
-  //   const studentId = parseInt(props.match.params.id);
-  //   let studentInfo = students.find(stu => stu.id === studentId);
-  //   setState({
-  //     ...state,
-  //     studentId : studentInfo.id
-  //   })
-  // }
 
   const { firstName, lastName, email, number, school } = state;
 

@@ -1,20 +1,19 @@
 import React,{ useState } from "react";
 import { Input } from "reactstrap";
-import {schools, categories} from "../../API/Details"
+import * as SchoolAction from "../../redux/School/action";
+import {categories} from "../../API/Details"
+import {connect} from "react-redux"
 
 
 function HeadSection({prop}) {
   const [state, setState] = useState({
-    listOfSchools : [],
     schoolId: 0,
   })
 
   const selectCategory = id => {
-     const fetchSchool = schools.filter(school => school.catId === parseInt(id))
-     setState({
-       ...state,
-       listOfSchools: fetchSchool
-     })
+     const {LoadListOfSchools} = prop
+     LoadListOfSchools()
+     
   }
   const schoolSelected = schl => {
     setState({
@@ -75,7 +74,7 @@ function HeadSection({prop}) {
                         }}
                       >
                         <option value="select">CHOOSE YOUR SCHOOL</option>
-                        {state.listOfSchools.map((detail, index) => (
+                        {prop.listOfSchools.map((detail, index) => (
                           <option key={index} value={detail.id}>
                             {detail.school}
                           </option>
@@ -108,4 +107,15 @@ function HeadSection({prop}) {
     </div>
   );
 }
-export default HeadSection;
+
+function mapStateToProps({school}){
+  return{
+    listOfSchools: school.listOfSchools
+  }
+}
+
+const mapDispatchToProps = {
+  LoadSchools: SchoolAction.LoadListOfSchools
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeadSection);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import * as SchoolAction from "../../redux/School/action";
 import {connect} from "react-redux"
@@ -10,7 +10,9 @@ const SchoolDetail = (props, LoadSchool, school) => {
     email: "",
     number: ""
   });
-  console.log(school);
+
+  const error = useRef(props.history.location.state).current;
+  console.log(error);
   useEffect(
     () => {
       LoadSchool();
@@ -54,6 +56,17 @@ const SchoolDetail = (props, LoadSchool, school) => {
               >
                 Enter your details to proceed
               </p>
+              <p
+                className="alert-warning text-center"
+                style={{
+                  width: "50%",
+                  height: "10%",
+                  marginLeft: "30%",
+                  color: "red"
+                }}
+              >
+                {error !== undefined ? error : null}
+              </p>
             </div>
           </div>
           <Form onSubmit={handleSubmit}>
@@ -68,6 +81,7 @@ const SchoolDetail = (props, LoadSchool, school) => {
                   name="firstName"
                   defaultValue={firstName}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -83,6 +97,7 @@ const SchoolDetail = (props, LoadSchool, school) => {
                   name="lastName"
                   defaultValue={lastName}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -98,6 +113,7 @@ const SchoolDetail = (props, LoadSchool, school) => {
                   defaultValue={email}
                   placeholder="Enter EmailAddress"
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -113,6 +129,7 @@ const SchoolDetail = (props, LoadSchool, school) => {
                   defaultValue={number}
                   placeholder="Reg Number"
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>

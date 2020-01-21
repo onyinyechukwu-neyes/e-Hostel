@@ -1,26 +1,34 @@
-import {LOAD_LISTOFSCHOOLS} from "./constant"
-import {schools} from "../../API/Details"
+import { SCHOOL_LIST, CATEGORIES } from "./constant";
+import { schools, categories } from "../../API/Details";
 
-
-
-
-export function loadListOfschoolsSuccess(payload){
-    return {
-        type: LOAD_LISTOFSCHOOLS,
-        payload
-    }
+export function loadCategoriesSuccess(payload) {
+  return { type: CATEGORIES, payload };
+}
+export function loadListOfschoolsSuccess(payload) {
+  return {
+    type: SCHOOL_LIST,
+    payload
+  };
 }
 
+export function LoadCategories() {
+  return function(dispatch) {
+    let cat = categories;
 
-export function LoadListOfSchools(id){
-    return function(dispatch){
-     let fetchSchool = schools.filter(school => school.catId === parseInt(id))
-    
-        if (fetchSchool !== undefined){
-            dispatch(loadListOfschoolsSuccess(fetchSchool))
-        }
-        return fetchSchool.payload;
+    if (cat !== undefined) {
+      dispatch(loadCategoriesSuccess(cat));
     }
-    
+    return cat;
+  };
 }
 
+export function LoadListOfSchools(id) {
+  return function(dispatch) {
+    let fetchSchool = schools.filter(school => school.catId === parseInt(id));
+
+    if (fetchSchool !== undefined) {
+      dispatch(loadListOfschoolsSuccess(fetchSchool));
+    }
+    return fetchSchool;
+  };
+}

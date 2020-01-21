@@ -1,26 +1,29 @@
-import React,{ useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 import * as SchoolAction from "../../redux/School/action";
-import {categories} from "../../API/Details"
-import {connect} from "react-redux"
+import { categories } from "../../API/Details";
+import { connect } from "react-redux";
 
-
-function HeadSection({prop}) {
+function HeadSection({ prop }) {
   const [state, setState] = useState({
-    schoolId: 0,
-  })
+    schoolId: 0
+  });
+
+  useEffect(() => {
+    const { LoadCategories } = prop;
+    LoadCategories();
+  }, []);
 
   const selectCategory = id => {
-     const {LoadListOfSchools} = prop
-     LoadListOfSchools()
-     
-  }
+    const { LoadListOfSchools } = prop;
+    LoadListOfSchools(id);
+  };
   const schoolSelected = schl => {
     setState({
       ...state,
-      schoolId : parseInt(schl)
-    })
-  }
+      schoolId: parseInt(schl)
+    });
+  };
   return (
     <div>
       <div className="header-background">
@@ -108,14 +111,16 @@ function HeadSection({prop}) {
   );
 }
 
-function mapStateToProps({school}){
-  return{
-    listOfSchools: school.listOfSchools
-  }
+function mapStateToProps({ school }) {
+  return {
+    listOfSchools: school.listOfSchools,
+    categories: school.categories
+  };
 }
 
 const mapDispatchToProps = {
-  LoadSchools: SchoolAction.LoadListOfSchools
-}
+  LoadSchools: SchoolAction.LoadListOfSchools,
+  LaodCategories: SchoolAction.LoadCategories
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadSection);

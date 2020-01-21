@@ -10,13 +10,13 @@ function HeadSection({
   LoadSchools,
   schools
 }) {
-  console.log(categories);
   const [state, setState] = useState({
     schoolId: 0
   });
 
   useEffect(() => {
     LoadCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const selectCategory = id => {

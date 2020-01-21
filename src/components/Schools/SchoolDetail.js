@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import { schools } from "../../API/Details";
 
@@ -11,6 +11,8 @@ const SchoolDetail = props => {
     number: ""
   });
 
+  const error = useRef(props.history.location.state).current;
+  console.log(error);
   useEffect(
     () => {
       const schoolId = parseInt(props.match.params.id);
@@ -64,6 +66,17 @@ const SchoolDetail = props => {
               >
                 Enter your details to proceed
               </p>
+              <p
+                className="alert-warning text-center"
+                style={{
+                  width: "50%",
+                  height: "10%",
+                  marginLeft: "30%",
+                  color: "red"
+                }}
+              >
+                {error !== undefined ? error : null}
+              </p>
             </div>
           </div>
           <Form onSubmit={handleSubmit}>
@@ -78,6 +91,7 @@ const SchoolDetail = props => {
                   name="firstName"
                   defaultValue={firstName}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -93,6 +107,7 @@ const SchoolDetail = props => {
                   name="lastName"
                   defaultValue={lastName}
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -108,6 +123,7 @@ const SchoolDetail = props => {
                   defaultValue={email}
                   placeholder="Enter EmailAddress"
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>
@@ -123,6 +139,7 @@ const SchoolDetail = props => {
                   defaultValue={number}
                   placeholder="Reg Number"
                   onChange={handleChange}
+                  required
                 />
               </Col>
             </FormGroup>

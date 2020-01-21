@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
 import * as SchoolAction from "../../redux/School/action";
-import { categories } from "../../API/Details";
 import { connect } from "react-redux";
 
-function HeadSection({ prop }) {
+function HeadSection({
+  prop,
+  categories,
+  LoadCategories,
+  LoadSchools,
+  schools
+}) {
+  console.log(categories);
   const [state, setState] = useState({
     schoolId: 0
   });
 
   useEffect(() => {
-    const { LoadCategories } = prop;
     LoadCategories();
   }, []);
 
   const selectCategory = id => {
-    const { LoadListOfSchools } = prop;
-    LoadListOfSchools(id);
+    LoadSchools(id);
   };
   const schoolSelected = schl => {
     setState({
@@ -59,7 +63,7 @@ function HeadSection({ prop }) {
                         }}
                       >
                         <option value="select">SCHOOL CATEGORIES</option>
-                        {prop.categories.map((cat, index) => (
+                        {categories.map((cat, index) => (
                           <option key={index} value={cat.id}>
                             {cat.category}
                           </option>
@@ -77,7 +81,7 @@ function HeadSection({ prop }) {
                         }}
                       >
                         <option value="select">CHOOSE YOUR SCHOOL</option>
-                        {prop.listOfSchools.map((detail, index) => (
+                        {schools.map((detail, index) => (
                           <option key={index} value={detail.id}>
                             {detail.school}
                           </option>
@@ -113,14 +117,14 @@ function HeadSection({ prop }) {
 
 function mapStateToProps({ school }) {
   return {
-    listOfSchools: school.listOfSchools,
+    schools: school.listOfSchools,
     categories: school.categories
   };
 }
 
 const mapDispatchToProps = {
   LoadSchools: SchoolAction.LoadListOfSchools,
-  LaodCategories: SchoolAction.LoadCategories
+  LoadCategories: SchoolAction.LoadCategories
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadSection);

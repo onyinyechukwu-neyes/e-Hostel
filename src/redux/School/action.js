@@ -1,34 +1,22 @@
-import { SCHOOL_LIST, CATEGORIES } from "./constant";
-import { schools, categories } from "../../API/Details";
+import {SCHOOL} from "./constants"
+import {schools} from "../../API/Details"
 
-export function loadCategoriesSuccess(payload) {
-  return { type: CATEGORIES, payload };
-}
-export function loadListOfschoolsSuccess(payload) {
-  return {
-    type: SCHOOL_LIST,
-    payload
-  };
-}
-
-export function LoadCategories() {
-  return function(dispatch) {
-    let cat = categories;
-
-    if (cat !== undefined) {
-      dispatch(loadCategoriesSuccess(cat));
+export function loadSchoolSuccess(payload){
+    return{
+        type: SCHOOL,
+        payload
     }
-    return cat;
-  };
 }
 
-export function LoadListOfSchools(id) {
-  return function(dispatch) {
-    let fetchSchool = schools.filter(school => school.catId === parseInt(id));
 
-    if (fetchSchool !== undefined) {
-      dispatch(loadListOfschoolsSuccess(fetchSchool));
+export function LoadSchool(props){
+    return function (dispatch){
+        const schoolId = parseInt(props.match.params.id);
+
+      let schoolInfo = schools.find(sch => sch.id === schoolId);
+      if (schoolInfo !== undefined) {
+        dispatch(loadSchoolSuccess(schoolInfo))
+      } 
+      return schoolInfo;
     }
-    return fetchSchool;
-  };
 }

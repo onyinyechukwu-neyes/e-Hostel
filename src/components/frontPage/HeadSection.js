@@ -59,7 +59,7 @@ function HeadSection({ prop }) {
                         }}
                       >
                         <option value="select">SCHOOL CATEGORIES</option>
-                        {categories.map((cat, index) => (
+                        {prop.categories.map((cat, index) => (
                           <option key={index} value={cat.id}>
                             {cat.category}
                           </option>

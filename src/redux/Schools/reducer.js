@@ -1,10 +1,11 @@
-import { SCHOOL_LIST, CATEGORIES } from "./constant";
+import { SCHOOL_LIST, CATEGORIES, SCHOOL } from "./constant";
 
 const initialState = {
   listOfSchools: [],
-  categories: []
+  categories: [],
+  school: {}
 };
-export default function schoolReducer(state = initialState, action) {
+export default function schoolsReducer(state = initialState, action) {
   switch (action.type) {
     case SCHOOL_LIST:
       return {
@@ -16,6 +17,11 @@ export default function schoolReducer(state = initialState, action) {
         ...state,
         categories: action.payload
       };
+    case SCHOOL:
+      return {
+          ...state,
+          school: action.payload
+      }
     default:
       return state;
   }

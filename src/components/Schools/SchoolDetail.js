@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
-import * as SchoolAction from "../../redux/School/action";
+import * as SchoolAction from "../../redux/Schools/action";
 import {connect} from "react-redux"
 
-const SchoolDetail = (props, LoadSchool, school) => {
+const SchoolDetail = ({props, LoadSchool, school}) => {
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -158,9 +158,9 @@ const SchoolDetail = (props, LoadSchool, school) => {
   );
 };
 
-function mapStateToProps({school}){
+function mapStateToProps({schools}){
     return{
-      school: school.school
+      school: schools.school
     }
 }
 

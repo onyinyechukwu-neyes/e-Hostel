@@ -115,10 +115,10 @@ function HeadSection({
   );
 }
 
-function mapStateToProps({ school }) {
+function mapStateToProps({ schools }) {
   return {
-    schools: school.listOfSchools,
-    categories: school.categories
+    schools: schools.listOfSchools,
+    categories: schools.categories
   };
 }
 

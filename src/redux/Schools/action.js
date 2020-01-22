@@ -1,4 +1,4 @@
-import { SCHOOL_LIST, CATEGORIES } from "./constant";
+import { SCHOOL_LIST, CATEGORIES, SCHOOL } from "./constant";
 import { schools, categories } from "../../API/Details";
 
 export function loadCategoriesSuccess(payload) {
@@ -8,6 +8,23 @@ export function loadListOfschoolsSuccess(payload) {
   return {
     type: SCHOOL_LIST,
     payload
+  };
+}
+
+export function loadSchoolSuccess(payload) {
+  return {
+    type: SCHOOL,
+    payload
+  };
+}
+
+export function LoadSchool(id) {
+  return function(dispatch) {
+    let schoolInfo = schools.find(sch => sch.id === id);
+    if (schoolInfo !== undefined) {
+      dispatch(loadSchoolSuccess(schoolInfo));
+    }
+    return schoolInfo;
   };
 }
 

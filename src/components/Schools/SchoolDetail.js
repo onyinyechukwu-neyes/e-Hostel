@@ -3,22 +3,28 @@ import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import * as SchoolAction from "../../redux/Schools/action";
 import { connect } from "react-redux";
 
-const SchoolDetail = props => {
+const SchoolDetail = ({ match, history, LoadSchool, school }) => {
   const [state, setState] = useState({
+    SchoolId: 0,
     firstName: "",
     lastName: "",
     email: "",
     number: ""
   });
 
-  const error = useRef(props.history.location.state).current;
+  const error = useRef(history.location.state).current;
 
-  const schoolId = useRef(props.match.params.id).current;
+  const schoolId = useRef(match.params.id).current;
 
-  console.log(error);
   useEffect(
     () => {
-      props.LoadSchool(parseInt(schoolId));
+      let schl = LoadSchool(parseInt(schoolId));
+      if (schl !== undefined) {
+        setState({
+          ...state,
+          SchoolId: schl.id
+        });
+      }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -50,7 +56,7 @@ const SchoolDetail = props => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-                Welcome To {props.school.school}
+                Welcome To {school.school}
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"
@@ -144,7 +150,7 @@ const SchoolDetail = props => {
                   variant="outline-success"
                   type="submit"
                   onClick={() => {
-                    props.history.push({
+                    history.push({
                       pathname: "/verify",
                       state: { state }
                     });

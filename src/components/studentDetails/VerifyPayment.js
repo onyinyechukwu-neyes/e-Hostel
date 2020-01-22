@@ -11,6 +11,7 @@ const VerifyPayment = props => {
   });
 
   const stateRef = useRef(props.location.state.state).current; //to persist the data from route, i used USEREF
+  console.log(stateRef);
 
   useEffect(
     () => {
@@ -28,7 +29,7 @@ const VerifyPayment = props => {
       } else {
         //alert("Not a member of the school ");
         props.history.push({
-          pathname: `/school-detail/${stateRef.school.id}`,
+          pathname: `/school-detail/${stateRef.SchoolId}`,
           state: `No match for ${
             stateRef.firstName !== undefined ? stateRef.firstName : "Student"
           } with ${

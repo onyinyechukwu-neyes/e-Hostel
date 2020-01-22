@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "reactstrap";
-import * as SchoolAction from "../../redux/School/action";
+import * as SchoolsAction from "../../redux/Schools/action";
 import { connect } from "react-redux";
 
 function HeadSection({
@@ -123,8 +123,8 @@ function mapStateToProps({ school }) {
 }
 
 const mapDispatchToProps = {
-  LoadSchools: SchoolAction.LoadListOfSchools,
-  LoadCategories: SchoolAction.LoadCategories
+  LoadSchools: SchoolsAction.LoadListOfSchools,
+  LoadCategories: SchoolsAction.LoadCategories
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeadSection);

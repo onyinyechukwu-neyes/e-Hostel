@@ -1,7 +1,9 @@
 import {combineReducers} from "redux"
-import school from "../redux/School/reducer"
+import schools from "./Schools/reducer"
+import school from "./School/reducer"
 
 const rootReducer = combineReducers({
+    schools,
     school
 })
 

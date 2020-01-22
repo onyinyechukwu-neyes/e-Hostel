@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
-import { schools } from "../../API/Details";
+import * as SchoolAction from "../../redux/School/action";
+import {connect} from "react-redux"
 
-const SchoolDetail = props => {
+const SchoolDetail = (props, LoadSchool, school) => {
   const [state, setState] = useState({
-    school: {},
     firstName: "",
     lastName: "",
     email: "",
@@ -15,17 +15,7 @@ const SchoolDetail = props => {
   console.log(error);
   useEffect(
     () => {
-      const schoolId = parseInt(props.match.params.id);
-
-      let schoolInfo = schools.find(sch => sch.id === schoolId);
-      if (schoolInfo !== undefined) {
-        setState({
-          ...state,
-          school: schoolInfo
-        });
-      } else {
-        props.history.push("/");
-      }
+      LoadSchool();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -44,7 +34,7 @@ const SchoolDetail = props => {
     e.preventDefault();
   };
 
-  const { firstName, lastName, email, number, school } = state;
+  const { firstName, lastName, email, number } = state;
 
   return (
     <div className="head-background">
@@ -168,4 +158,13 @@ const SchoolDetail = props => {
   );
 };
 
-export default SchoolDetail;
+function mapStateToProps({school}){
+    return{
+      school: school.school
+    }
+}
+
+const mapDispatchToProps = {
+  LoadSchool: SchoolAction.LoadSchool
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SchoolDetail);

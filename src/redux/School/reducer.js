@@ -1,22 +1,17 @@
-import { SCHOOL_LIST, CATEGORIES } from "./constant";
+import {SCHOOL} from "./constants"
 
 const initialState = {
-  listOfSchools: [],
-  categories: []
-};
-export default function schoolReducer(state = initialState, action) {
-  switch (action.type) {
-    case SCHOOL_LIST:
-      return {
-        ...state,
-        listOfSchools: action.payload
-      };
-    case CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload
-      };
-    default:
-      return state;
-  }
+    school: {}
+}
+
+export default function schoolReducer(state= initialState, action){
+    switch(action.type){
+        case SCHOOL:
+            return {
+                ...state,
+                school: action.payload
+            }
+        default:
+            return state
+    }
 }

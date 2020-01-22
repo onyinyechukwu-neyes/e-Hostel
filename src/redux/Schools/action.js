@@ -17,6 +17,18 @@ export function loadSchoolSuccess(payload){
   }
 }
 
+
+
+export function LoadSchool(id) {
+  return function(dispatch) {
+    let schoolInfo = schools.find(sch => sch.id === id);
+    if (schoolInfo !== undefined) {
+      dispatch(loadSchoolSuccess(schoolInfo));
+    }
+    return schoolInfo;
+  };
+}
+
 export function LoadCategories() {
   return function(dispatch) {
     let cat = categories;
@@ -40,14 +52,3 @@ export function LoadListOfSchools(id) {
 }
 
 
-export function LoadSchool(props){
-  return function (dispatch){
-      const schoolId = parseInt(props.match.params.id);
-
-    let schoolInfo = schools.find(sch => sch.id === schoolId);
-    if (schoolInfo !== undefined) {
-      dispatch(loadSchoolSuccess(schoolInfo))
-    } 
-    return schoolInfo;
-  }
-}

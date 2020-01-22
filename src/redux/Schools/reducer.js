@@ -12,16 +12,17 @@ export default function schoolsReducer(state = initialState, action) {
         ...state,
         listOfSchools: action.payload
       };
+    case SCHOOL:
+      return {
+        ...state,
+        school: action.payload
+      };
     case CATEGORIES:
       return {
         ...state,
         categories: action.payload
       };
-    case SCHOOL:
-      return {
-          ...state,
-          school: action.payload
-      }
+      
     default:
       return state;
   }

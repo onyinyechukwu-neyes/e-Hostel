@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button, FormGroup, Label, Input } from "reactstrap";
 import * as SchoolAction from "../../redux/Schools/action";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 
-const SchoolDetail = ({props, LoadSchool, school}) => {
+const SchoolDetail = props => {
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -12,10 +12,13 @@ const SchoolDetail = ({props, LoadSchool, school}) => {
   });
 
   const error = useRef(props.history.location.state).current;
+
+  const schoolId = useRef(props.match.params.id).current;
+
   console.log(error);
   useEffect(
     () => {
-      LoadSchool();
+      props.LoadSchool(parseInt(schoolId));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -47,7 +50,7 @@ const SchoolDetail = ({props, LoadSchool, school}) => {
                 data-wow-duration="1000ms"
                 data-wow-delay="200ms"
               >
-                Welcome To {school.school}
+                Welcome To {props.school.school}
               </h1>
               <p
                 className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"
@@ -158,13 +161,13 @@ const SchoolDetail = ({props, LoadSchool, school}) => {
   );
 };
 
-function mapStateToProps({schools}){
-    return{
-      school: schools.school
-    }
+function mapStateToProps({ school }) {
+  return {
+    school: school.school
+  };
 }
 
 const mapDispatchToProps = {
   LoadSchool: SchoolAction.LoadSchool
-}
+};
 export default connect(mapStateToProps, mapDispatchToProps)(SchoolDetail);

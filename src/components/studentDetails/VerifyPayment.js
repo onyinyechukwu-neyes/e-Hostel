@@ -101,7 +101,7 @@ const VerifyPayment = props => {
               />
             </FormGroup>
 
-            <Button variant="primary" type="submit">
+            <Button disabled={recieptNumber.length > 7 ? false: true} variant="primary" type="submit">
               Verify
             </Button>
           </Form><br />

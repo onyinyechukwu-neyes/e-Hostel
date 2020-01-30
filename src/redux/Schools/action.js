@@ -9,12 +9,22 @@ export function loadListOfschoolsSuccess(payload) {
     payload
   };
 }
+<<<<<<< HEAD
 export function loadSchoolSuccess(payload) {
   return {
     type: SCHOOL,
     payload
   };
+=======
+export function loadSchoolSuccess(payload){
+  return{
+      type: SCHOOL,
+      payload
+  }
+>>>>>>> f19582adae00a8b7bdcff36014121a032b430d6f
 }
+
+
 
 export function LoadSchool(id) {
   return function(dispatch) {
@@ -51,3 +61,5 @@ export function LoadListOfSchools(id) {
       });
   };
 }
+
+

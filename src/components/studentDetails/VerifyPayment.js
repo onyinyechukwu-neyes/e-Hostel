@@ -78,7 +78,7 @@ const VerifyPayment = props => {
             </div>
           </div>
           <Form onSubmit={handleSubmit}>
-            <h2>Payment Verification</h2>
+            <h2 >Payment Verification</h2>
             <FormGroup>
               <Input
                 type="hidden"
@@ -101,10 +101,11 @@ const VerifyPayment = props => {
               />
             </FormGroup>
 
-            <Button variant="primary" type="submit">
+            <Button disabled={recieptNumber.length > 7 ? false: true} variant="primary" type="submit">
               Verify
             </Button>
-          </Form>
+          </Form><br />
+          <h3 className= "sec-heading-white">Yet to make payment? <a href="#">Click here</a></h3>
         </div>
       </div>
     </div>

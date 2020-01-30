@@ -40,14 +40,14 @@ function HeadSection({
                   data-wow-duration="1000ms"
                   data-wow-delay="200ms"
                 >
-                  SCHOOL HOSTEL ALLOCATION
+                  E-SCHOOL HOSTEL ALLOCATION
                 </h1>
                 <p
                   className="sec-heading sec-heading-center sec-heading-white hero-tag wow fadeInUp animated"
                   data-wow-duration="900ms"
                   data-wow-delay="200ms"
                 >
-                  You can explore our app and make indications and reviews
+                  The smart way of getting a hostel with ease 
                 </p>
               </div>
             </div>

@@ -6,9 +6,8 @@ const SchoolDetail = React.lazy(() =>
   import("./components/Schools/SchoolDetail")
 );
 const HomePage = React.lazy(() => import("./components/frontPage/HomPage"));
-const VerifyPayment = React.lazy(() =>
-  import("./components/studentDetails/VerifyPayment")
-);
+const VerifyPayment = React.lazy(() =>import("./components/Verify/VerifyPayment"));
+const Settings = React.lazy(() => import("./components/Settings/Settings"))
 const loading = () => <div>loading...</div>;
 
 const App = () => {
@@ -25,6 +24,7 @@ const App = () => {
           exact={true}
           render={props => <HomePage {...props} />}
         />
+        <Route path= "/settings" render={props => <Settings {...props}/>} />
 
         <Redirect from="/?" to="/" />
       </Switch>

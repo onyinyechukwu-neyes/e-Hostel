@@ -14,6 +14,9 @@ const SchoolDetail = ({ match, history, LoadSchool, school }) => {
 
   const error = useRef(history.location.state).current;
 
+  //using email Regular Expression
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   const schoolId = useRef(match.params.id).current;
 
   useEffect(
@@ -148,6 +151,15 @@ const SchoolDetail = ({ match, history, LoadSchool, school }) => {
               <Col sm="2" className="column">
                 <Button
                   variant="outline-success"
+                  disabled={
+                    number.length > 5 &&
+                    firstName !== "" &&
+                    lastName !== "" &&
+                    email.length >= 6 &&
+                    re.test(email)
+                      ? false
+                      : true
+                  }
                   type="submit"
                   onClick={() => {
                     history.push({

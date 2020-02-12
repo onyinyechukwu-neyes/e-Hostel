@@ -35,7 +35,7 @@ function About() {
             >
               <div className="abt-img">
                 <img
-                  src="images/mockup.png"
+                  src="images/hostel@.jpg"
                   className="img-responsive"
                   alt=""
                 />

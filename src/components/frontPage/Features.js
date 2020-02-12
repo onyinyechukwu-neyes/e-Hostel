@@ -5,22 +5,23 @@ function Features() {
     <div>
       <div className="cs-section">
         <div className="container">
+          <div className="col-lg-12"><h2 className="sec-heading sec-heading-center">Features</h2></div>
           <div className="row">
             <div
               className="col-sm-7 wow fadeInLeft animated animated"
               data-wow-duration="500ms"
               data-wow-delay="300ms"
             >
-              <div className="feature-img">
+              <div >
                 <img
-                  src="images/mockup2.png"
+                  src="images/hostel.jpg"
                   className="img-responsive"
                   alt=""
                 />
               </div>
             </div>
             <div className="col-sm-5">
-              <h2 className="sec-heading">Features</h2>
+              
               <div
                 className="feature wow fadeIn"
                 data-wow-duration="1000ms"

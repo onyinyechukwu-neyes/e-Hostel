@@ -1,5 +1,4 @@
 import { SCHOOL_LIST, CATEGORIES, SCHOOL } from "./constant";
-import { schools, categories } from "../../API/Details";
 
 export function loadCategoriesSuccess(payload) {
   return { type: CATEGORIES, payload };
@@ -10,45 +9,45 @@ export function loadListOfschoolsSuccess(payload) {
     payload
   };
 }
-export function loadSchoolSuccess(payload){
-  return{
-      type: SCHOOL,
-      payload
-  }
+export function loadSchoolSuccess(payload) {
+  return {
+    type: SCHOOL,
+    payload
+  };
 }
-
-
 
 export function LoadSchool(id) {
   return function(dispatch) {
-    let schoolInfo = schools.find(sch => sch.id === id);
-    if (schoolInfo !== undefined) {
-      dispatch(loadSchoolSuccess(schoolInfo));
-    }
-    return schoolInfo;
+    fetch(`/school/${id}`)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(loadSchoolSuccess(json));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 }
 
 export function LoadCategories() {
   return function(dispatch) {
-    let cat = categories;
-
-    if (cat !== undefined) {
-      dispatch(loadCategoriesSuccess(cat));
-    }
-    return cat;
+    fetch("/categories")
+      .then(res => res.json())
+      .then(json => {
+        dispatch(loadCategoriesSuccess(json));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 }
 
 export function LoadListOfSchools(id) {
   return function(dispatch) {
-    let fetchSchool = schools.filter(school => school.catId === parseInt(id));
-
-    if (fetchSchool !== undefined) {
-      dispatch(loadListOfschoolsSuccess(fetchSchool));
-    }
-    return fetchSchool;
+    fetch(`/schools/${id}`)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(loadListOfschoolsSuccess(json));
+      });
   };
 }
-
-

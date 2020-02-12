@@ -27,7 +27,7 @@ const VerifyPayment = props => {
           EmailAddress: studentInfo.email
         });
       } else {
-        //alert("Not a member of the school");
+        //alert("Not a member of the school ");
         props.history.push({
           pathname: `/school-detail/${stateRef.SchoolId}`,
           state: `No match for ${

@@ -27,7 +27,7 @@ const VerifyPayment = props => {
           EmailAddress: studentInfo.email
         });
       } else {
-        //alert("Not a member of the school ");
+        //alert("Not a member of the school");
         props.history.push({
           pathname: `/school-detail/${stateRef.SchoolId}`,
           state: `No match for ${
@@ -105,7 +105,7 @@ const VerifyPayment = props => {
               Verify
             </Button>
           </Form><br />
-          <h3 className= "sec-heading-white">Yet to make payment? <a href="#">Click here</a></h3>
+          <h3 className= "sec-heading-white">Yet to make payment? <a href="/">Click here</a></h3>
         </div>
       </div>
     </div>
